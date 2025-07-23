@@ -1,20 +1,14 @@
-from flask import Flask, render_template, request
-import requests
+from flask import Flask, render_template, redirect, url_for
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    result = None
-    if request.method == 'POST':
-        from_currency = request.form['from']
-        to_currency = request.form['to']
-        amount = float(request.form['amount'])
-        url = f"https://api.exchangerate.host/convert?from={from_currency}&to={to_currency}&amount={amount}"
-        response = requests.get(url)
-        data = response.json()
-        result = round(data['result'], 2)
-    return render_template('index.html', result=result)
+@app.route('/')
+def welcome():
+    return render_template('welcome.html')
+
+@app.route('/converter')
+def converter():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
