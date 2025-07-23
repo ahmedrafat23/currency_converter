@@ -1,41 +1,26 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>مرحبًا بك</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f1f1f1;
-            text-align: center;
-            padding-top: 100px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 24px;
-            background-color: #0077cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        a:hover {
-            background-color: #005fa3;
-        }
-    </style>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
-    <h1>مرحبًا بك في محول العملات الذكى</h1>
-    <a href="/converter">ابدأ</a>
+    <div class="welcome-container">
+        <h1>Welcome to the <span>Currency Converter!</span></h1>
+        <p>Convert currencies with real-time rates</p>
+
+        <!-- زر أنيق للانتقال إلى صفحة المحول -->
+        <a href="/converter" class="converter-btn">Go to Converter</a>
+    </div>
+
+    <audio id="money-audio" autoplay>
+        <source src="{{ url_for('static', filename='audio/money.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script src="{{ url_for('static', filename='js/welcome.js') }}"></script>
 </body>
 
 </html>
