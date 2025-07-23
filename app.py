@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ def welcome():
 
 @app.route('/converter')
 def converter():
-    return render_template('index.html')
+    return render_template('index.html')  # صفحة المحول الحالية
 
 if __name__ == '__main__':
     app.run(debug=True)
