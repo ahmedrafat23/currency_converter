@@ -51,3 +51,39 @@ body {
     background-color: #019874;
     transform: scale(1.05);
 }
+
+/* شكل الزر */
+.converter-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #00c3ff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00c3ff, 0 0 40px #00c3ff, 0 0 80px #00c3ff;
+    transition: all 0.3s ease;
+}
+
+/* تأثير تفاعلي عند مرور الماوس */
+
+
+.glow-button {
+    background-color: #acb800;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #00b894;
+    text-transform: uppercase;
+}
+
+.glow-button:hover {
+    box-shadow: 0 0 20px #00b894, 0 0 40px #00cec9, 0 0 60px #55efc4;
+    transform: scale(1.05);
+}
