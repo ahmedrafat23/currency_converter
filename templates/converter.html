@@ -99,6 +99,22 @@
                 flex-direction: column;
             }
         }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #cccccc;
+        }
     </style>
 </head>
 
@@ -140,6 +156,9 @@
             {{ amount }} {{ from_currency }} = {{ result }} {{ to_currency }}
         </div>
         {% endif %}
+
+        <!-- ✅ Back to Home button -->
+        <a href="/" class="back-btn">⬅ Back to Home</a>
     </div>
 
     <script>
