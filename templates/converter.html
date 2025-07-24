@@ -32,8 +32,13 @@
         }
 
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: #0077cc;
+        }
+
+        .graphics {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
         form {
@@ -121,7 +126,9 @@
 <body>
 
     <div class="converter-box">
-        <h1>💱 Currency Converter</h1>
+        <h1>💱 Currency Machine</h1>
+
+        <div class="graphics">💸 🔄 💰 📊</div>
 
         <form method="POST">
             <input type="number" name="amount" step="0.01" placeholder="Enter amount" required value="{{ amount }}"
@@ -157,12 +164,12 @@
         </div>
         {% endif %}
 
-        <!-- ✅ Back to Home button -->
         <a href="/" class="back-btn">⬅ Back to Home</a>
+
+        <div class="graphics" style="margin-top: 20px;">💵 💻 🔧 📈 💳</div>
     </div>
 
     <script>
-        // Clear amount on page load
         window.addEventListener('DOMContentLoaded', function () {
             document.getElementById('amount-box').value = '';
         });
