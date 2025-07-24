@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 
 app = Flask(__name__)
@@ -21,6 +21,7 @@ def welcome():
 @app.route('/converter', methods=['GET', 'POST'])
 def converter():
     result = None
+    rate = None
     currencies = []
     amount = 0
     from_currency = 'USD'
@@ -33,7 +34,8 @@ def converter():
 
         rates = get_rates(from_currency)
         if rates and to_currency in rates:
-            result = round(amount * rates[to_currency], 2)
+            rate = rates[to_currency]
+            result = round(amount * rate, 2)
         currencies = list(rates.keys()) if rates else []
     else:
         rates = get_rates('USD')
@@ -45,7 +47,8 @@ def converter():
         currencies=currencies,
         from_currency=from_currency,
         to_currency=to_currency,
-        amount=amount
+        amount=amount,
+        rate=rate
     )
 
 if __name__ == '__main__':

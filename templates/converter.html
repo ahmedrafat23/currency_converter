@@ -3,75 +3,151 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Currency Converter</title>
+    <title>🌍 Currency Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            padding: 40px;
-            background: #f1f5f9;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .converter-box {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
             text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #0077cc;
         }
 
         form {
-            background: white;
-            display: inline-block;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
+        input,
         select,
-        input {
-            padding: 10px;
-            margin: 10px;
-            font-size: 1em;
+        button {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #0077cc;
         }
 
         button {
-            padding: 10px 20px;
-            background: #0077cc;
+            background-color: #0077cc;
             color: white;
-            border: none;
-            border-radius: 5px;
+            font-weight: bold;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background: #005fa3;
+            background-color: #005fa3;
         }
 
-        h3 {
-            margin-top: 30px;
+        .result {
+            margin-top: 20px;
+            font-size: 1.3em;
+            color: #00695c;
+            font-weight: bold;
+        }
+
+        .currencies {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .currencies {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>💱 Currency Converter</h1>
-    <form method="POST">
-        <input type="number" name="amount" step="0.01" placeholder="Amount" required value="{{ amount }}">
+    <div class="converter-box">
+        <h1>💱 Currency Converter</h1>
 
-        <select name="from_currency">
-            {% for currency in currencies %}
-            <option value="{{ currency }}" {% if currency==from_currency %}selected{% endif %}>{{ currency }}</option>
-            {% endfor %}
-        </select>
+        <form method="POST">
+            <input type="number" name="amount" step="0.01" placeholder="Enter amount" required value="{{ amount }}"
+                id="amount-box" onfocus="this.select();">
 
-        <span>→</span>
+            {% if rate %}
+            <input type="text" value="1 {{ from_currency }} = {{ rate }} {{ to_currency }}" readonly
+                style="background-color:#f3f3f3; border:none; padding:10px; border-radius:5px;">
+            {% endif %}
 
-        <select name="to_currency">
-            {% for currency in currencies %}
-            <option value="{{ currency }}" {% if currency==to_currency %}selected{% endif %}>{{ currency }}</option>
-            {% endfor %}
-        </select>
+            <div class="currencies">
+                <select name="from_currency">
+                    {% for currency in currencies %}
+                    <option value="{{ currency }}" {% if currency==from_currency %}selected{% endif %}>{{ currency }}
+                    </option>
+                    {% endfor %}
+                </select>
 
-        <button type="submit">Convert</button>
-    </form>
+                <select name="to_currency">
+                    {% for currency in currencies %}
+                    <option value="{{ currency }}" {% if currency==to_currency %}selected{% endif %}>{{ currency }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
 
-    {% if result %}
-    <h3>{{ amount }} {{ from_currency }} = {{ result }} {{ to_currency }}</h3>
-    {% endif %}
+            <button type="submit">Convert</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            {{ amount }} {{ from_currency }} = {{ result }} {{ to_currency }}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Clear amount on page load
+        window.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('amount-box').value = '';
+        });
+    </script>
 
 </body>
 
