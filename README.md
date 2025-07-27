@@ -1,3 +1,5 @@
+<img width="1024" height="1024" alt="ChatGPT Image Jul 27, 2025, 11_22_03 AM" src="https://github.com/user-attachments/assets/2cc32209-8adc-412d-bdda-10b618f0fbf8" />
+
 # 💱 Currency Converter
 
 A simple, interactive web application to convert between world currencies in real time using the [ExchangeRate-API](https://www.exchangerate-api.com/).
